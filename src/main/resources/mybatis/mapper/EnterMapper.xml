@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wxwyz.mapper.EnterMapper">
+    <resultMap id="userEnterMap" type="com.wxwyz.dto.UserEnterDTO">
+        <id property="userId" column="id"></id>
+        <result property="userName" column="username"></result>
+        <result property="realName" column="real_name"></result>
+        <result property="nickname" column="nickname"></result>
+        <result property="avatars" column="avatars"></result>
+        <result property="phone" column="phone"></result>
+        <association property="enter" column="user_id" javaType="com.wxwyz.model.Enter">
+            <id property="enterId" column="enter_id"></id>
+            <result property="userId" column="user_id"></result>
+            <result property="jobId" column="job_id"></result>
+            <result property="enterTime" column="enter_time"></result>
+        </association>
+    </resultMap>
+
+    <select id="queryUserEnterJob" parameterType="integer" resultMap="userEnterMap">
+        select e.*,u.username,u.real_name,u.avatars,u.nickname,u.phone
+        from tb_enter e, tb_user u where e.user_id = u.id and e.user_id = #{uid};
+    </select>
+
+    <select id="queryAEnterJob" parameterType="integer" resultMap="userEnterMap">
+        select e.*,u.username,u.real_name,u.avatars,u.nickname,u.phone
+        from tb_enter e, tb_user u
+        where e.user_id = u.id and e.user_id = #{userId} and e.job_id = #{jobId}
+    </select>
+
+    <insert id="insertAEnterJob" parameterType="com.wxwyz.model.Enter">
+        insert into tb_enter(user_id,job_id,enter_time) values (#{userId},#{jobId},#{enterTime})
+    </insert>
+</mapper>
