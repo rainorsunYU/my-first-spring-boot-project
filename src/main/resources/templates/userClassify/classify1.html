@@ -18,7 +18,7 @@
 
 <div class="fly-header layui-bg-black">
     <div class="layui-container">
-        <a class="fly-logo">
+        <a class="fly-logo" th:href="@{/}">
             <img th:src="@{../static/res/images/logoko.png}" style="width: 83px;height: 40px" alt="logo">
         </a>
         <ul class="layui-nav fly-nav layui-hide-xs">
@@ -61,7 +61,7 @@
                     <dd><a th:href="@{/user/activate}"><i class="layui-icon" style="margin-left: 2px; font-size: 22px;">&#xe68e;</i>我的主页</a>
                     </dd>
                     <hr style="margin: 5px 0;">
-                    <dd th:if="${session.userLogin != null}"><a th:href="@{/user/logout/}" style="text-align: center;">退出</a>
+                    <dd th:if="${session.userLogin != null}"><a th:href="@{/user/logout}" style="text-align: center;">退出</a>
                     </dd>
                 </dl>
 
@@ -182,12 +182,10 @@
                 <h3 class="fly-panel-title">温馨通道</h3>
                 <ul class="fly-panel-main fly-list-static">
                     <li>
-                        <a href="http://fly.layui.com/jie/4281/" target="_blank">rain 的 GitHub
-                            仓库，欢迎Star</a>
+                        <a href="https://github.com/rainorsunYU/my-first-spring-boot-project" target="_blank">rain的兼职项目的 GitHub 仓库，欢迎Star</a>
                     </li>
                 </ul>
             </div>
-
 
             <div class="fly-panel fly-signin">
                 <div class="fly-panel-title">
@@ -213,33 +211,25 @@
                             <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"><cite>贤心</cite><i>106次回答</i>
                         </a>
                     </dd>
-
                 </dl>
             </div>
 
             <dl class="fly-panel fly-list-one">
                 <dt class="fly-panel-title">本周热议</dt>
-
                 <dd>
                     <a href="info/detail.html">没有相关数据</a>
                     <span><i class="iconfont icon-pinglun1"></i> 0</span>
                 </dd>
-
                 <!-- 无数据时 -->
                 <div class="fly-none">没有相关数据</div>
-
             </dl>
-
             <div class="fly-panel">
-                <div class="fly-panel-title">
-                    公告
-                </div>
+                <div class="fly-panel-title">公告</div>
                 <div class="fly-panel-main">
                     <a href="http://layim.layui.com/?from=fly" target="_blank" class="fly-zanzhu"
                        time-limit="2017.09.25-2099.01.01" style="background-color: #5FB878;">没有相关数据</a>
                 </div>
             </div>
-
             <div class="fly-panel fly-link">
                 <h3 class="fly-panel-title">友情链接</h3>
                 <dl class="fly-panel-main">
@@ -247,7 +237,6 @@
                     <dd><a href="http://www.baidu.com/" target="_blank">baidu</a></dd>
                 </dl>
             </div>
-
         </div>
     </div>
 </div>

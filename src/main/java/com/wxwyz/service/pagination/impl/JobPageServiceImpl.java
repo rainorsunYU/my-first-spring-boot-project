@@ -108,4 +108,9 @@ public class JobPageServiceImpl implements IJobPageService {
         jobPage2DTO.setList(jobAllInfoDTOS);
         return jobPage2DTO;
     }
+
+    @Override
+    public Integer deleteApplicant(Integer jobId) {
+        return partTimeJobMapper.deleteAJobApplicants(jobId);
+    }
 }

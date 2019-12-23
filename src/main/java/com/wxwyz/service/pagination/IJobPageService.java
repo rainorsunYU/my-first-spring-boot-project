@@ -28,4 +28,6 @@ public interface IJobPageService {
     JobPage2DTO queryAllByClassify(Integer page,Integer size,String jobType);
 
     JobPage2DTO queryAllByClassify2(Integer page,Integer size,String jobType1,String jobType2,String jobType3);
+
+    Integer deleteApplicant(Integer jobId);
 }

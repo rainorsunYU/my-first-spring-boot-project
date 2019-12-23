@@ -98,4 +98,8 @@
     <update id="updateAJobState" parameterType="integer">
         update tb_job set state=#{state} where job_id = #{jobId};
     </update>
+
+    <update id="deleteAJobApplicants" parameterType="integer">
+        update tb_job set applicants=applicants-1 where job_id = #{jobId};
+    </update>
 </mapper>

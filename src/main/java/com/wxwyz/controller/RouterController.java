@@ -26,11 +26,6 @@ public class RouterController {
         return "info/add";
     }
 
-    @RequestMapping("/bus/home")
-    public String toBusHome(){
-        return "busindex";
-    }
-
     @RequestMapping("/user/classify1")
     public String toUserHome1(){
         return "userClassify/classify1";
@@ -49,6 +44,31 @@ public class RouterController {
     @RequestMapping("/user/classify4")
     public String toUserHome4(){
         return "userClassify/classify4";
+    }
+
+    @RequestMapping("/bus/home")
+    public String toBusHome(){
+        return "busindex";
+    }
+
+    @RequestMapping("/bus/classify1")
+    public String toBusHome1(){
+        return "busClassify/classify1";
+    }
+
+    @RequestMapping("/bus/classify2")
+    public String toBusHom2(){
+        return "busClassify/classify2";
+    }
+
+    @RequestMapping("/bus/classify3")
+    public String toBusHome3(){
+        return "busClassify/classify3";
+    }
+
+    @RequestMapping("/bus/classify4")
+    public String toBusHome4(){
+        return "busClassify/classify4";
     }
 
 }

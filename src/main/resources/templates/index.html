@@ -18,7 +18,7 @@
 
 <div class="fly-header layui-bg-black">
     <div class="layui-container">
-        <a class="fly-logo">
+        <a class="fly-logo" th:href="@{/}">
             <img th:src="@{../static/res/images/logoko.png}" style="width: 83px;height: 40px" alt="logo">
         </a>
         <ul class="layui-nav fly-nav layui-hide-xs">
@@ -26,7 +26,7 @@
                 <a href="/"><i class="iconfont icon-jiaoliu"></i>主页</a>
             </li>
             <li class="layui-nav-item">
-                <a th:href="@{case/case.html}"><i class="iconfont icon-iconmingxinganli"></i>案例</a>
+                <a><i class="iconfont icon-iconmingxinganli"></i>案例</a>
             </li>
         </ul>
 
@@ -43,7 +43,7 @@
                 </li>
 
                 <li class="layui-nav-item">
-                    <a href="user/reg.html">注册</a>
+                    <a th:href="@{/user/reg}">注册</a>
                 </li>
             </div>
             <!-- 登入后的状态 -->
@@ -56,18 +56,13 @@
                 </a>
 
                 <dl class="layui-nav-child">
-                    <dd><a href="user/set.html"><i class="layui-icon">&#xe620;</i>基本设置</a></dd>
+                    <dd><a th:href="@{/user/setting}"><i class="layui-icon">&#xe620;</i>基本设置</a></dd>
                     <dd><a href="user/message.html"><i class="iconfont icon-tongzhi" style="top: 4px;"></i>我的消息</a></dd>
-                    <dd><a th:href="@{/user/activate}"><i class="layui-icon" style="margin-left: 2px; font-size: 22px;">&#xe68e;</i>我的主页</a>
-                    </dd>
+                    <dd><a th:href="@{/user/activate}"><i class="layui-icon" style="margin-left: 2px; font-size: 22px;">&#xe68e;</i>我的主页</a></dd>
                     <hr style="margin: 5px 0;">
-                    <dd th:if="${session.userLogin != null}"><a th:href="@{/user/logout/}" style="text-align: center;">退出</a>
-                    </dd>
+                    <dd th:if="${session.userLogin != null}"><a th:href="@{/user/logout}" style="text-align: center;">退出</a></dd>
                 </dl>
-
             </li>
-
-
         </ul>
     </div>
 </div>
@@ -81,17 +76,13 @@
             <li><a th:href="@{/}">讨论</a></li>
             <li><a th:href="@{/}">建议</a></li>
             <li><a th:href="@{/}">动态</a></li>
-
             <li class="layui-hide-xs layui-hide-sm layui-show-md-inline-block"><span class="fly-mid"></span></li>
-
             <!-- 用户登入后显示 -->
             <!--            <li class="layui-hide-xs layui-hide-sm layui-show-md-inline-block" th:if="${session.businessLogin != null}">-->
             <!--                <a href="user/index.html">我发表的贴</a></li>-->
             <!--            <li class="layui-hide-xs layui-hide-sm layui-show-md-inline-block" th:if="${session.businessLogin != null}">-->
             <!--                <a href="user/index.html#collection">我收藏的贴</a></li>-->
-
         </ul>
-
         <!-- 用户登录后状态 -->
         <!--        <div class="fly-column-right layui-hide-xs" th:if="${session.business != null}">-->
         <!--            <span class="fly-search"><i class="layui-icon"></i></span>-->
@@ -101,26 +92,21 @@
         <!--        <div class="layui-hide-sm layui-show-xs-block" style="margin-top: -10px; padding-bottom: 10px; text-align: center;">-->
         <!--            <a th:href="@{/info/upload}" class="layui-btn">发布新兼职</a>-->
         <!--        </div>-->
-
-
     </div>
 </div>
 
 <div class="layui-container">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md8">
-
             <div class="fly-panel">
                 <div class="fly-panel-title fly-filter">
                     <a>置顶</a>
                 </div>
                 <ul class="fly-list">
-
                     <!-- 热门兼职 -->
                     <li>
                         <a href="user/home.html" class="fly-avatar">
-                            <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"
-                                 alt="null">
+                            <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" alt="null">
                         </a>
                         <h2>
                             <a class="layui-badge">type</a>
@@ -132,19 +118,15 @@
                                 <i class="iconfont icon-renzheng" title="认证信息：企业认证"></i>
                             </a>
                             <span>刚刚</span>
-
                             <span class="fly-list-kiss layui-hide-xs" title="浏览人数"><i class="iconfont icon-kiss"></i> 60</span>
                             <span class="layui-badge fly-badge-accept layui-hide-xs">已满</span>
                             <span class="fly-list-nums"><i class="iconfont icon-pinglun1" title="回答"></i> 66</span>
                         </div>
-
                         <div class="fly-list-badge">
                             <span class="layui-badge layui-bg-black">置顶</span>
                             <span class="layui-badge layui-bg-red">热门</span>
                         </div>
                     </li>
-
-
                 </ul>
             </div>
 
@@ -190,26 +172,18 @@
 <!--                        </div>-->
 <!--                    </li>-->
                 </ul>
-
                 <div id="demo7" class="page" style="text-align: center"></div>
-
             </div>
-
         </div>
-
         <div class="layui-col-md4">
-
             <div class="fly-panel">
                 <h3 class="fly-panel-title">温馨通道</h3>
                 <ul class="fly-panel-main fly-list-static">
                     <li>
-                        <a href="http://fly.layui.com/jie/4281/" target="_blank">rain 的 GitHub
-                            仓库，欢迎Star</a>
+                        <a href="https://github.com/rainorsunYU/my-first-spring-boot-project" target="_blank">rain的兼职项目的 GitHub 仓库，欢迎Star</a>
                     </li>
                 </ul>
             </div>
-
-
             <div class="fly-panel fly-signin">
                 <div class="fly-panel-title">
                     签到
@@ -221,7 +195,6 @@
                 </div>
                 <div class="fly-panel-main fly-signin-main">
                     <button class="layui-btn layui-btn-danger" id="LAY_signin">今日签到</button>
-
                 </div>
             </div>
 
@@ -234,33 +207,24 @@
                             <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"><cite>贤心</cite><i>106次回答</i>
                         </a>
                     </dd>
-
                 </dl>
             </div>
-
             <dl class="fly-panel fly-list-one">
                 <dt class="fly-panel-title">本周热议</dt>
-
                 <dd>
                     <a href="info/detail.html">没有相关数据</a>
                     <span><i class="iconfont icon-pinglun1"></i> 0</span>
                 </dd>
-
                 <!-- 无数据时 -->
                 <div class="fly-none">没有相关数据</div>
-
             </dl>
-
             <div class="fly-panel">
-                <div class="fly-panel-title">
-                    公告
-                </div>
+                <div class="fly-panel-title">公告</div>
                 <div class="fly-panel-main">
                     <a href="http://layim.layui.com/?from=fly" target="_blank" class="fly-zanzhu"
                        time-limit="2017.09.25-2099.01.01" style="background-color: #5FB878;">没有相关数据</a>
                 </div>
             </div>
-
             <div class="fly-panel fly-link">
                 <h3 class="fly-panel-title">友情链接</h3>
                 <dl class="fly-panel-main">
@@ -268,7 +232,6 @@
                     <dd><a href="http://www.baidu.com/" target="_blank">baidu</a></dd>
                 </dl>
             </div>
-
         </div>
     </div>
 </div>
@@ -283,60 +246,11 @@
 
 <script th:src="@{../static/res/layui/layui.js}"></script>
 
+<script th:src="@{../static/res/mods/dateFormat.js}"></script>
+
 <script>
 
     var total = 10;
-
-    //js函数代码：字符串转换为时间戳
-    function getDateTimeStamp(dateRelease) {
-        return new Date(dateRelease);
-    }
-
-    function timeago(dateTimeStamp) {   //dateTimeStamp是一个时间毫秒，注意时间戳是秒的形式，在这个毫秒的基础上除以1000，就是十位数的时间戳。13位数的都是时间毫秒。
-        var minute = 1000 * 60;      //把分，时，天，周，半个月，一个月用毫秒表示
-        var hour = minute * 60;
-        var day = hour * 24;
-        var week = day * 7;
-        var halfamonth = day * 15;
-        var month = day * 30;
-        var now = new Date().getTime();   //获取当前时间毫秒
-        // console.log(now)
-        var diffValue = now - dateTimeStamp;//时间差
-
-        if (diffValue < 0) {
-            return;
-        }
-        var minC = diffValue / minute;  //计算时间差的分，时，天，周，月
-        var hourC = diffValue / hour;
-        var dayC = diffValue / day;
-        var weekC = diffValue / week;
-        var monthC = diffValue / month;
-        if (monthC >= 1 && monthC <= 3) {
-            result = " " + parseInt(monthC) + "月前"
-        } else if (weekC >= 1 && weekC <= 3) {
-            result = " " + parseInt(weekC) + "周前"
-        } else if (dayC >= 1 && dayC <= 6) {
-            result = " " + parseInt(dayC) + "天前"
-        } else if (hourC >= 1 && hourC <= 23) {
-            result = " " + parseInt(hourC) + "小时前"
-        } else if (minC >= 1 && minC <= 59) {
-            result = " " + parseInt(minC) + "分钟前"
-        } else if (diffValue >= 0 && diffValue <= minute) {
-            result = "刚刚"
-        } else {
-            var datetime = new Date();
-            datetime.setTime(dateTimeStamp);
-            var Nyear = datetime.getFullYear();
-            var Nmonth = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
-            var Ndate = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
-            var Nhour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
-            var Nminute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
-            var Nsecond = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
-            result = Nyear + "-" + Nmonth + "-" + Ndate
-        }
-        return result;
-    }
-
 
     function showRecord(pageNo, pageSize) {
 
@@ -348,18 +262,12 @@
                 size: pageSize
             },
             success: function (date) {
-                total = $('#totalHidden').val();
-                console.log(total);
 
                 //加载后台返回的List集合数据
                 for (var i = 0; i < date.length; i++) {
-
+                    total = date.length;
                     var dataRelease = getDateTimeStamp(date[i].partTimeJob.releaseTime);
-
                     var ReleaseTime = timeago(dataRelease);
-
-                    console.log(date[i].avatars);
-
                     $('#info-list').append("<li>\n" +
                         "                        <a class=\"fly-avatar\">\n" +
                         "                            <img src=\"" + date[i].avatars + "\"\n" +

@@ -1,6 +1,8 @@
 package com.wxwyz.service.userEnter.impl;
 
+import com.wxwyz.dto.EnterPageDTO;
 import com.wxwyz.dto.UserEnterDTO;
+import com.wxwyz.dto.UserEnterJobDTO;
 import com.wxwyz.mapper.EnterMapper;
 import com.wxwyz.model.Enter;
 import com.wxwyz.service.userEnter.IUserEnterService;
@@ -30,5 +32,21 @@ public class UserEnterServiceImpl implements IUserEnterService {
     @Override
     public Integer insertAUserEnter(Enter enter) {
         return enterMapper.insertAEnterJob(enter);
+    }
+
+    @Override
+    public EnterPageDTO queryOneUserEnter(Integer page, Integer size, Integer uid) {
+        EnterPageDTO pageDTO = new EnterPageDTO();
+        pageDTO.setPage(page);
+        pageDTO.setSize(size);
+        pageDTO.setTotalRecord(enterMapper.queryOneUserEnterNum(uid));
+        List<UserEnterJobDTO> enterJobDTOS = enterMapper.queryOneUserEnter(pageDTO.getOfferSet(), size, uid);
+        pageDTO.setList(enterJobDTOS);
+        return pageDTO;
+    }
+
+    @Override
+    public Integer deleteAEnterJob(Integer enter) {
+        return enterMapper.deleteAEnterJob(enter);
     }
 }

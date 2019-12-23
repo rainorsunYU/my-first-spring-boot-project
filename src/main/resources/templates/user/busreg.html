@@ -11,12 +11,12 @@
 
 <div class="fly-header layui-bg-black">
   <div class="layui-container">
-    <a class="fly-logo" th:href="@{/}">
+    <a class="fly-logo" th:href="@{/bus/home}">
       <img th:src="@{../static/res/images/logoko.png}" style="width: 83px;height: 40px" alt="logo">
     </a>
     <ul class="layui-nav fly-nav layui-hide-xs">
       <li class="layui-nav-item layui-this">
-        <a th:href="@{/}"><i class="iconfont icon-jiaoliu"></i>主页</a>
+        <a th:href="@{/bus/home}"><i class="iconfont icon-jiaoliu"></i>主页</a>
       </li>
       <li class="layui-nav-item">
         <a><i class="iconfont icon-iconmingxinganli"></i>案例</a>
@@ -26,10 +26,10 @@
     <ul class="layui-nav fly-nav-user">
       <!-- 未登入的状态 -->
       <li class="layui-nav-item">
-        <a class="iconfont icon-touxiang layui-hide-xs" th:href="@{/user/login}"></a>
+        <a class="iconfont icon-touxiang layui-hide-xs" th:href="@{/bus/login}"></a>
       </li>
       <li class="layui-nav-item">
-        <a th:href="@{/user/login}">登入</a>
+        <a th:href="@{/bus/login}">登入</a>
       </li>
     </ul>
   </div>
@@ -39,8 +39,8 @@
   <div class="fly-panel fly-panel-user" pad20>
     <div class="layui-tab layui-tab-brief" lay-filter="user">
       <ul class="layui-tab-title">
-        <li class="layui-this"><a th:href="@{/user/reg}">普通用户注册</a></li>
-        <li><a th:href="@{/bus/reg}">商家注册</a></li>
+        <li><a th:href="@{/user/reg}">普通用户注册</a></li>
+        <li class="layui-this"><a th:href="@{/bus/reg}">商家注册</a></li>
       </ul>
 
       <div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
@@ -55,17 +55,11 @@
                 <div class="layui-form-mid layui-word-aux">将会成为您唯一的登入名</div>
               </div>
               <div class="layui-form-item">
-                <label for="L_nickname" class="layui-form-label">昵称</label>
+                <label for="L_nickname" class="layui-form-label">商家名</label>
                 <div class="layui-input-inline">
                   <input type="text" id="L_nickname" required lay-verify="required" autocomplete="off" class="layui-input">
                 </div>
               </div>
-            <div class="layui-form-item">
-              <label for="L_realname" class="layui-form-label">真实姓名</label>
-              <div class="layui-input-inline">
-                <input type="text" id="L_realname" required lay-verify="required" autocomplete="off" class="layui-input">
-              </div>
-            </div>
               <div class="layui-form-item">
                 <label for="L_pass" class="layui-form-label">密码</label>
                 <div class="layui-input-inline">

@@ -3,6 +3,7 @@ package com.wxwyz.controller;
 import com.wxwyz.dto.BusinessAllInfoDTO;
 import com.wxwyz.dto.JobPage2DTO;
 import com.wxwyz.model.Business;
+import com.wxwyz.service.comment.impl.CommentServiceImpl;
 import com.wxwyz.service.pagination.impl.JobPageServiceImpl;
 import com.wxwyz.service.user.impl.BusinessServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class BusinessController {
 
     @Autowired
     private JobPageServiceImpl jobPageServiceImpl;
+
+    @Autowired
+    private CommentServiceImpl commentServiceImpl;
 
     @RequestMapping("/bus/login")
     public String toBusLogin(){
@@ -46,7 +50,7 @@ public class BusinessController {
         return result;
     }
 
-    @RequestMapping("/bus/logout/")
+    @RequestMapping("/bus/logout")
     public String userLogout(HttpServletRequest request){
         request.getSession().removeAttribute("businessLogin");
         return "redirect:/";
@@ -62,6 +66,9 @@ public class BusinessController {
         JobPage2DTO page2DTO = jobPageServiceImpl.queryOneBusJobInfo(page, size, bid);
         request.getSession().setAttribute("oneBusJobTotal",page2DTO.getTotalRecord());
         List<BusinessAllInfoDTO> businessAllInfoDTOS = page2DTO.getList();
+        for (int i = 0; i < businessAllInfoDTOS.size(); i++) {
+            businessAllInfoDTOS.get(i).setComments(commentServiceImpl.queryAJobCommNum(businessAllInfoDTOS.get(i).getPartTimeJob().getJobId()));
+        }
         return businessAllInfoDTOS;
     }
 
@@ -79,5 +86,15 @@ public class BusinessController {
         if (updateAJobState == 1){
             return "1";
         }else{ return "-1"; }
+    }
+
+    @RequestMapping("/bus/setting")
+    public String toSetting(){
+        return "user/busset";
+    }
+
+    @RequestMapping("/bus/reg")
+    public String toReg(){
+        return "user/busreg";
     }
 }

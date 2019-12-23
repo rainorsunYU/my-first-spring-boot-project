@@ -130,7 +130,7 @@ public class JobController {
         if (applicants > needNumber) {
             return "101"; //表示人数已满
         } else {
-            if (jobPageServiceImpl.updateApplicants(id) == 1) {
+            if (jobPageServiceImpl.updateApplicants(jobId) == 1) {
                 Enter enter = new Enter();
                 enter.setUserId(id);
                 enter.setJobId(jobId);

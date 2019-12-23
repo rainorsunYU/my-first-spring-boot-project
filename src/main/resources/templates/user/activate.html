@@ -14,12 +14,12 @@
 
 <div class="fly-header layui-bg-black">
     <div class="layui-container">
-        <a class="fly-logo" th:href="@{/}">
+        <a class="fly-logo" th:href="@{/bus/home}">
             <img th:src="@{../../static/res/images/logoko.png}" style="width: 83px;height: 40px" alt="logo">
         </a>
         <ul class="layui-nav fly-nav layui-hide-xs">
             <li class="layui-nav-item layui-this">
-                <a href="/"><i class="iconfont icon-jiaoliu"></i>主页</a>
+                <a th:href="@{/bus/home}"><i class="iconfont icon-jiaoliu"></i>主页</a>
             </li>
             <li class="layui-nav-item">
                 <a><i class="iconfont icon-iconmingxinganli"></i>公告</a>
@@ -35,13 +35,13 @@
                     <img th:src="@{${session.businessLogin.avatars}}">
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="../user/set.html"><i class="layui-icon">&#xe620;</i>基本设置</a></dd>
-                    <dd><a href="../user/message.html"><i class="iconfont icon-tongzhi" style="top: 4px;"></i>我的消息</a>
+                    <dd><a th:href="@{/bus/setting}"><i class="layui-icon">&#xe620;</i>基本设置</a></dd>
+                    <dd><a href="javascript:;"><i class="iconfont icon-tongzhi" style="top: 4px;"></i>我的消息</a>
                     </dd>
                     <dd><a th:href="@{/bus/activate}"><i class="layui-icon" style="margin-left: 2px; font-size: 22px;">&#xe68e;</i>我的主页</a>
                     </dd>
                     <hr style="margin: 5px 0;">
-                    <dd><a th:href="@{/bus/login}" style="text-align: center;">退出</a></dd>
+                    <dd><a th:href="@{/bus/logout}" style="text-align: center;">退出</a></dd>
                 </dl>
             </li>
         </ul>
@@ -51,25 +51,25 @@
 <div class="layui-container fly-marginTop fly-user-main">
     <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
         <li class="layui-nav-item">
-            <a href="home.html">
+            <a href="javascript:;">
                 <i class="layui-icon">&#xe609;</i>
                 我的主页
             </a>
         </li>
         <li class="layui-nav-item layui-this">
-            <a href="index.html">
+            <a th:href="@{/bus/activate}">
                 <i class="layui-icon">&#xe612;</i>
                 用户中心
             </a>
         </li>
         <li class="layui-nav-item">
-            <a href="set.html">
+            <a th:href="@{/bus/setting}">
                 <i class="layui-icon">&#xe620;</i>
                 基本设置
             </a>
         </li>
         <li class="layui-nav-item">
-            <a href="message.html">
+            <a href="javascript:;">
                 <i class="layui-icon">&#xe611;</i>
                 我的消息
             </a>
@@ -81,28 +81,23 @@
         <div class="layui-tab layui-tab-brief" lay-filter="user">
             <ul class="layui-tab-title" id="LAY_mine">
                 <li data-type="mine-jie" lay-id="index" class="layui-this" th:if="${session.businessLogin != null}">
-                    我发布的兼职（<span>89</span>）
-                </li>
-                <li data-type="mine-jie" lay-id="index" class="layui-this" th:if="${session.userLogin != null}">
-                    我报名的兼职（<span>89</span>）
+                    我发布的兼职（<span id="fbSpan"></span>）
                 </li>
                 <li data-type="collection" data-url="/collection/find/" lay-id="collection" class="">
-                    我收藏的兼职（<span>16</span>）
+                    我收藏的兼职（<span>0</span>）
                 </li>
             </ul>
             <div class="layui-tab-content" style="padding: 20px 0;">
 
                 <div class="layui-tab-item layui-show">
                     <ul class="mine-view jie-row" id="demo001">
-
-                        <li>
-                            <a class="jie-title" href="../jie/detail.html" target="_blank">基于 layui 的极简社区页面模版</a>
-                            <i>2017/3/14 上午8:30:00</i>
-                            <a class="mine-edit" href="/business/edit">编辑</a>
-                            <a class="mine-edit" onclick="deleteAJob(1)">删除</a>
-                            <em>66浏览/10报名</em>
-                        </li>
-
+<!--                        <li>-->
+<!--                            <a class="jie-title" href="../jie/detail.html" target="_blank">基于 layui 的极简社区页面模版</a>-->
+<!--                            <i>2017/3/14 上午8:30:00</i>-->
+<!--                            <a class="mine-edit" href="/business/edit">编辑</a>-->
+<!--                            <a class="mine-edit" onclick="deleteAJob(1)">删除</a>-->
+<!--                            <em>66浏览/10报名</em>-->
+<!--                        </li>-->
                     </ul>
                     <div id="demo7" class="page" style="text-align: center"></div>
                 </div>
@@ -117,8 +112,6 @@
                     </ul>
                     <div id="LAY_page1"></div>
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -144,7 +137,6 @@
 <script>
 
     var total = 10;
-
     var flag = 0;
 
     function sendRecend(pageNum, pageSize) {
@@ -157,9 +149,9 @@
                 bid: $('#busId').val()
             },
             success: function (date) {
-                total = $('#oneBusJob').val();
                 for (var i = 0; i < date.length; i++) {
-                    console.log(date.length);
+                    total = date.length;
+                    $('#fbSpan').text(total);
                     var dataRelease = getDateTimeStamp(date[i].partTimeJob.releaseTime);
                     var ReleaseTime = timeago(dataRelease);
 
@@ -167,7 +159,7 @@
                         "                            <a class=\"jie-title\" href=\"/job/detail?jobId=" + date[i].partTimeJob.jobId + "\" target=\"_blank\">" + date[i].partTimeJob.jobTitle + "</a>\n" +
                         "                            <i>" + ReleaseTime + "</i>\n" +
                         "                            <a class=\"mine-edit\" href=\"/business/edit\">编辑</a>\n" +
-                        "                            <span class=\"mine-edit\" id=\"deleteBtn\" values=\""+date[i].partTimeJob.jobId+"\">删除</span>\n" +
+                        "                            <span class=\"mine-edit layui-bg-red\" class=\"deleteBtn\" values=\""+date[i].partTimeJob.jobId+"\">删除</span>\n" +
                         "                            <em>" + date[i].partTimeJob.jobViews + "浏览/10报名</em>\n" +
                         "                        </li>");
                 }
@@ -187,9 +179,9 @@
         var laypage = layui.laypage, $ = layui.$, util = layui.util,
             carousel = layui.carousel, form = layui.form, element = layui.element, flow = layui.flow;
 
-        $('#deleteBtn').click(function () {
-            console.log($('#deleteBtn').attr("values"));
-            // console.log($(this).parent().remove());
+        $('#demo001 li span').click(function () {
+            console.log($(this).attr("values"));
+            var values1 = $(this).attr("values");
             var index2 = layer.alert('是否要删除这个兼职', {
                 title: '提示'
                 , btn: ['确定', '取消']
@@ -205,7 +197,7 @@
                         url: "/delete/job",
                         type: "DELETE",
                         data: {
-                            jid: $('#deleteBtn').attr("values"),
+                            jid: values1,
                             state: flag
                         },
                         beforeSend: function () {
@@ -243,7 +235,6 @@
                 }
             });
         });
-
 
         $("body").click(function (event) {
             var $this = event.target;

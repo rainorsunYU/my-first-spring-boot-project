@@ -1,5 +1,6 @@
 package com.wxwyz.service.userEnter;
 
+import com.wxwyz.dto.EnterPageDTO;
 import com.wxwyz.dto.UserEnterDTO;
 import com.wxwyz.model.Enter;
 
@@ -12,4 +13,8 @@ public interface IUserEnterService{
     UserEnterDTO queryAUserEnterJob(Integer uid, Integer jid);
 
     Integer insertAUserEnter(Enter enter);
+
+    EnterPageDTO queryOneUserEnter(Integer page, Integer size, Integer uid);
+
+    Integer deleteAEnterJob(Integer enter);
 }

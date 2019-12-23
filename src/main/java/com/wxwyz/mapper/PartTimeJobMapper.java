@@ -42,4 +42,5 @@ public interface PartTimeJobMapper {
 
     Integer updateAJobState(Integer jobId,Integer state);
 
+    Integer deleteAJobApplicants(Integer jobId);
 }
